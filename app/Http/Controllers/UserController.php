@@ -37,20 +37,13 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate([
-            'firstName' => ['required', 'string', 'max:255'],
-            'LastName' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        $name=$request->firstName." ".$request->LastName;
+        $user = User::create([
+            'name' => $name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
-        $name=$request->firstName+" "+$request->LastName;
-        dd($name);
-        // $user = User::create([
-        //     'name' => $name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        // ]);
 
-        return redirect()->route("home");
+        return redirect()->login();
     }
 }
