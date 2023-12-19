@@ -15,7 +15,7 @@ class AdminController extends Controller
 
     public function checklogin(Request $request){
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>1])){
-            
+            $request->session()->regenerate();
             return redirect()->route('admin.index');
         }else{
             echo" dang nhap that bai";
@@ -23,5 +23,11 @@ class AdminController extends Controller
     }
     public function index() {
         return view("Admin.index");
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect()->route("admin.login");
     }
 }

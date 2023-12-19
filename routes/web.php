@@ -31,13 +31,19 @@ use App\Http\Controllers\ProductController;
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
+Route::group(['middleware' => 'checklogin'], function () {
+    // Routes that require authentication
 
-Route:: get('admin/login',[AdminController::class,'login']);
+    Route::get('admin/', [AdminController::class, 'index'])->name("admin.index");
+    Route::resource('admin/product', ProductController::class);
+});
+
+Route:: get('admin/login',[AdminController::class,'login'])->name("admin.login");
 Route:: post('admin/login',[AdminController::class,'checklogin'])->name("admin.loginpost");
-Route:: get('admin/',[AdminController::class,'index'])->name("admin.index");
+// Route:: get('admin/',[AdminController::class,'index'])->name("admin.index");
 
 
-Route:: resource('admin/product',ProductController::class);
+// Route:: resource('admin/product',ProductController::class);
 
 
 Route:: get('login',[UserController::class,'login']);

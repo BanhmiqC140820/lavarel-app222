@@ -303,7 +303,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     
-                    <form  method="POST" action="{{route('product.store',['product'=>$product->id])}}" enctype="multipart/form-data">
+                    <form  method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                           <label class="form-label">Tên Sản Phẩm</label>
@@ -385,7 +385,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{route('product.index')}}">Logout</a>
                 </div>
             </div>
         </div>
