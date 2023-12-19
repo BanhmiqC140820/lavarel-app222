@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
 {
@@ -25,7 +26,7 @@ class AdminController extends Controller
         return view("Admin.index");
     }
 
-    public function logout(Request $request){
+    public function logout(Request $request): RedirectResponse{
         Auth::logout();
         $request->session()->invalidate();
         return redirect()->route("admin.login");

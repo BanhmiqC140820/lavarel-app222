@@ -36,6 +36,7 @@ Route::group(['middleware' => 'checklogin'], function () {
 
     Route::get('admin/', [AdminController::class, 'index'])->name("admin.index");
     Route::resource('admin/product', ProductController::class);
+    Route::get('admin/logout', [AdminController::class, 'logout'])->name("admin.logout");
 });
 
 Route:: get('admin/login',[AdminController::class,'login'])->name("admin.login");
