@@ -57,19 +57,19 @@
             </div>
                        <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('listing.index', ['model' => 'categories']) }}">
+                <a class="nav-link" href="categories">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý danh mục</span></a>
              </li>   
              <li class="nav-item">
-                <a class="nav-link" href="product">
+                <a class="nav-link" href="{{route('product.index')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý sản phẩm</span>
                 </a>
             </li>
             
              <li class="nav-item">
-                <a class="nav-link" href="{{ route('listing.index', ['model' => 'Orders']) }}">
+                <a class="nav-link" href="Orders">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Orders</span></a>
              </li>          
