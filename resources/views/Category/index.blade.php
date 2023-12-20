@@ -66,7 +66,7 @@
                         <span>Quản lý danh mục</span></a>
                  </li>   
                  <li class="nav-item">
-                    <a class="nav-link" href="{{route('product.index')}}">
+                    <a class="nav-link" href="product">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Quản lý sản phẩm</span>
                     </a>
@@ -302,49 +302,56 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    
-                    <form  method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                          <label class="form-label">Tên Sản Phẩm</label>
-                          <input type="text" class="form-control" name="productName" placeholder="Nhập tên sản phẩm" required>
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                         </div>
-                        <div class="mb-3">
-                            <label  class="form-label">Xuất xứ</label>
-                            <input type="text" class="form-control" name="productOrigin" placeholder="Nhập xuất xứ sản phẩm" required>
-                          </div>
-                      
-                        <div class="mb-3">
-                          <label class="form-label">Mô Tả</label>
-                          <textarea class="form-control" name="productDescription" rows="3" placeholder="Nhập mô tả sản phẩm"></textarea>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <a href="{{route('categories.create')}}" class="btn btn-primary">add</a>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>name</th>
+                                            <th>detail</th>
+                                            <th>edit</th>
+                                            <th>delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($categories as $item)
+                                        <tr>
+                                            <td>{{$item->id}}</td>
+                                            <td>{{$item->name}}</td>
+                                            <td><img height="75" src="{{asset('images/'.$item->img)}}"></td>
+                                            <td><a href="" class="btn btn-info">detail</a></td>
+                                            <td><a href="{{route('categories.edit',['category' => $item->id])}}" class="btn btn-success">edit</a></td>
+                                            <td>
+                                                <form action="{{route('categories.destroy',['category' => $item->id])}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-warning">delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+
+                                    </tbody>
+
+                                </table>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label  class="form-label">Số lượng</label>
-                            <input type="text" class="form-control" name="productCount" placeholder="Nhập số lượng sản phẩm" required>
-                          </div>
-                        <div class="mb-3">
-                          <label  class="form-label">Giá</label>
-                          <input type="number" class="form-control" name="productPrice" placeholder="Nhập giá sản phẩm" required>
-                        </div>
-                    
-                        <div class="mb-3">
-                          <label  class="form-label">Ảnh Sản Phẩm</label>
-                          <input type="file" class="form-control" name="productImage" accept="image/*">
-                        </div>
-                    
-                        <div class="mb-3">
-                          <label for="productCategory" class="form-label">Danh Mục</label>
-                          <select class="form-select" id="productCategory" name="productCategory" required>
-                            <option value="0" disabled selected>Chọn danh mục</option>
-                            @foreach($categories as $item)
-                            <option value="{{$item->id}}">{{$item->name}}</option>
-                            @endforeach
-                            <!-- Thêm các danh mục khác nếu cần -->
-                          </select>
-                        </div>
-                
-                        <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
-                      </form>
+                    </div>
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -386,7 +393,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{route('product.index')}}">Logout</a>
+                    <a class="btn btn-primary" href="{{route('admin.logout')}}">Logout</a>
                 </div>
             </div>
         </div>

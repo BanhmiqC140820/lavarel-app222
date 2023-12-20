@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::get('admin/', [AdminController::class, 'index'])->name("admin.index");
     Route::resource('admin/product', ProductController::class);
     Route::get('admin/logout', [AdminController::class, 'logout'])->name("admin.logout");
+    Route::resource('admin/categories', CategoryController::class);
 });
 
 Route:: get('admin/login',[AdminController::class,'login'])->name("admin.login");
