@@ -336,9 +336,14 @@
                         <div class="mb-3">
                           <label for="productCategory" class="form-label">Danh Mục</label>
                           <select class="form-select" id="productCategory" required>
-                            <option value="" disabled selected>Chọn danh mục</option>
-                            <option value="electronics">Điện tử</option>
-                            <option value="clothing">Quần áo</option>
+                            <option value="0" disabled selected>Chọn danh mục</option>
+                            @foreach($categories as $item)
+                                @if ($item->id==$product->category_id)
+                                    <option value="{{$item->id}}" selected>{{$item->name}}</option>
+                                @else
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endif
+                            @endforeach
                             <!-- Thêm các danh mục khác nếu cần -->
                           </select>
                         </div>

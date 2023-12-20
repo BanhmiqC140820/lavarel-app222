@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -23,8 +23,8 @@ class ProductController extends Controller
     public function create()
     {
         //
-
-        return view("Product.create");
+        $categories = Category::all();
+        return view("Product.create", ['categories' => $categories]);
     }
 
     /**
@@ -38,7 +38,8 @@ class ProductController extends Controller
             'description' => $request->input('productDescription'),
             'price' => $request->input('productPrice'),
             'quantity' => $request->input('productCount'),
-            'origin' => $request->input('productOrigin')
+            'origin' => $request->input('productOrigin'),
+            'category_id' => $request->input('productCategory')
         ]);
         $product->id_product = 'SP' . str_pad(Product::count() + 1, 4, '0', STR_PAD_LEFT);
         $generatedImageName = 'image' . time() . '-'
@@ -47,7 +48,6 @@ class ProductController extends Controller
         $request->productImage->move(public_path('images'), $generatedImageName);
 
         $product->img = $generatedImageName;
-        // dd($product);
         $product->save();
         return redirect()->route('product.index');
     }
@@ -66,7 +66,11 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return view("product.edit")->with('product', $product);
+        $categories = Category::all();
+        return view("product.edit", [
+            'categories' => $categories,
+            'product' => $product
+        ]);
     }
 
     /**
@@ -75,14 +79,29 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $product = Product::where('id', $id)
-            ->update([
-                'name' => $request->input('productName'),
-                'description' => $request->input('productDescription'),
-                'price' => $request->input('productPrice'),
-                'quantity' => $request->input('productCount'),
-                'origin' => $request->input('productOrigin')
-            ]);
+        $product = Product::find($id);
+        $generatedImageName = 'image' . time() . '-'
+            . $product->id_product . '.'
+            . $request->productImage->extension();
+        $request->productImage->move(public_path('images'), $generatedImageName);
+        $product->update([
+            'name' => $request->input('productName'),
+            'description' => $request->input('productDescription'),
+            'price' => $request->input('productPrice'),
+            'quantity' => $request->input('productCount'),
+            'origin' => $request->input('productOrigin'),
+            'img'=>$generatedImageName
+        ]);
+        // dd($product);
+        // $product = Product::where('id', $id)
+        //     ->update([
+        //         'name' => $request->input('productName'),
+        //         'description' => $request->input('productDescription'),
+        //         'price' => $request->input('productPrice'),
+        //         'quantity' => $request->input('productCount'),
+        //         'origin' => $request->input('productOrigin')
+        //     ]);
+
         return redirect()->route('product.index');
     }
 
@@ -91,7 +110,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+
         $product = Product::find($id);
         $product->delete();
 

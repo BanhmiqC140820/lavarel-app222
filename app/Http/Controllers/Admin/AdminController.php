@@ -19,7 +19,7 @@ class AdminController extends Controller
             $request->session()->regenerate();
             return redirect()->route('admin.index');
         }else{
-            echo" dang nhap that bai";
+            dd(Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>1]));
         }
     }
     public function index() {
