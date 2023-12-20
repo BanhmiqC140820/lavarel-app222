@@ -40,14 +40,15 @@
                     
                         <div class="mb-3">
                           <label for="productCategory" class="form-label">Danh Mục</label>
-                          <select class="form-select" id="productCategory" required>
-                            <option value="" disabled selected>Chọn danh mục</option>
-                            <option value="electronics">Điện tử</option>
-                            <option value="clothing">Quần áo</option>
+                          <select class="form-select" id="productCategory" name="productCategory" required>
+                            <option value="0" disabled selected>Chọn danh mục</option>
+                            @foreach($categories as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
                             <!-- Thêm các danh mục khác nếu cần -->
                           </select>
                         </div>
-                    
+                
                         <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
                       </form>
                 </div>
