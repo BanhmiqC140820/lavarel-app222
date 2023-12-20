@@ -33,7 +33,6 @@ use App\Http\Controllers\ProductController;
 
 Route::group(['middleware' => 'checklogin'], function () {
     // Routes that require authentication
-
     Route::get('admin/', [AdminController::class, 'index'])->name("admin.index");
     Route::resource('admin/product', ProductController::class);
     Route::get('admin/logout', [AdminController::class, 'logout'])->name("admin.logout");
