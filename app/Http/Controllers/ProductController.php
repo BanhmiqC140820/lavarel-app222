@@ -16,6 +16,11 @@ class ProductController extends Controller
         $products = Product::all();
         return view('Product.index')->with('products', $products);
     }
+    public function home()
+    {
+        $products = Product::all();
+        return view('Product.home')->with('products', $products);
+    }
 
     /**
      * Show the form for creating a new resource.

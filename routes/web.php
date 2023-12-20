@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,9 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::resource('admin/product', ProductController::class);
     Route::get('admin/logout', [AdminController::class, 'logout'])->name("admin.logout");
 });
+    Route::get('/', [ProductController::class, 'home']);
 
+    
 Route:: get('admin/login',[AdminController::class,'login'])->name("admin.login");
 Route:: post('admin/login',[AdminController::class,'checklogin'])->name("admin.loginpost");
 // Route:: get('admin/',[AdminController::class,'index'])->name("admin.index");
