@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('invoice_id')->references('id')->on('invoices');
             $table->integer('quantity_purchase');
-            $table->boolean('is_purchased');
+            $table->boolean('is_purchased')->default(false);
             $table->timestamps();
         });
     }
