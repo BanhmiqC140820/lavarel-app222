@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Arsha Bootstrap Template - Index</title>
+  <title>Nhat Quang Manager Group 7</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <!-- Favicons -->
   <link href="{{asset('assets1')}}/img/favicon.png" rel="icon">
   <link href="{{asset('assets1')}}/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -43,7 +43,7 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Arsha</a></h1>
+      <h1 class="logo me-auto"><a class="text-center" href="index.html">E-Commerce <br><span class="ms-5 " style="color: #47b2e4">Store</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 

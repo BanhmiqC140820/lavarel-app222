@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>0])) {
-            return redirect()->route('User.index');
+            return redirect()->route('user.home');
         } else {
             echo " dang nhap that bai";
         }

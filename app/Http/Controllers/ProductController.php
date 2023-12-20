@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function home()
     {
         
-        return view('Giaodien.index');
+        return view('Home.index');
     }
 
     /**

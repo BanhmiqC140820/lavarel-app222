@@ -18,8 +18,11 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
- Route::get('/', [ProductController::class, 'home']);
+
  
+Route::get('/', function () {
+    return view('User.login');
+});
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -38,18 +41,24 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::get('admin/logout', [AdminController::class, 'logout'])->name("admin.logout");
     Route::resource('admin/categories', CategoryController::class);
 });
-
 Route:: get('admin/login',[AdminController::class,'login'])->name("admin.login");
 Route:: post('admin/login',[AdminController::class,'checklogin'])->name("admin.loginpost");
 // Route:: get('admin/',[AdminController::class,'index'])->name("admin.index");
 
+Route::group(['middleware' => 'checkloginuser'], function () {
+    Route::get('user/home', [ProductController::class, 'home'])->name("user.home");
+});
 
-// Route:: resource('admin/product',ProductController::class);
+Route:: get('user/login',[UserController::class,'login'])->name("user.login");
+
+
+
+Route:: post('user/login',[UserController::class,'checklogin'])->name('user.loginpost');
+
+
 
 
 Route:: get('login',[UserController::class,'login']);
-Route:: post('login',[UserController::class,'checklogin'])->name('user.loginpost');
-
 Route:: get('register',[UserController::class,'register'])->name('user.register');
 Route:: post('register',[UserController::class,'store'])->name('user.create');
 
