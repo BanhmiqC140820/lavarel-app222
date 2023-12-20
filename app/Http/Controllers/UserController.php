@@ -19,7 +19,7 @@ class UserController extends Controller
     public function checklogin(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password,])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>0])) {
             return redirect()->route('User.index');
         } else {
             echo " dang nhap that bai";

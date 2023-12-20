@@ -332,7 +332,6 @@
                                         <tr>
                                             <td>{{$item->id}}</td>
                                             <td>{{$item->name}}</td>
-                                            <td><img height="75" src="{{asset('images/'.$item->img)}}"></td>
                                             <td><a href="" class="btn btn-info">detail</a></td>
                                             <td><a href="{{route('categories.edit',['category' => $item->id])}}" class="btn btn-success">edit</a></td>
                                             <td>
