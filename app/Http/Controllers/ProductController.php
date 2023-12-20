@@ -17,6 +17,12 @@ class ProductController extends Controller
         return view('Product.index')->with('products', $products);
     }
 
+    public function home()
+    {
+        
+        return view('Giaodien.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
