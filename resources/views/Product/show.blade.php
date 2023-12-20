@@ -9,7 +9,7 @@
               @include('Product.layouts.navbar')
                 <div class="container-fluid">
                    
-                    <form  method="POST" action="{{route('product.show')}}" enctype="multipart/form-data">
+                    <form  method="POST" action="{{route('product.show',['product'=>$product->id])}}" enctype="multipart/form-data">
                         @csrf
                         <div class="container">
                             <h1 class="h3 mb-2 text-gray-800">Product Details</h1>
@@ -21,7 +21,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <img src="{{ asset('images/' . $product->img) }}" alt="Product Image" class="img-fluid">
+                                            <img height="75" src="{{ asset('images/' . $product->img) }}" alt="Product Image" class="img-fluid">
                                         </div>
                                         <div class="col-md-6">
                                             <h4>Name: {{ $product->name }}</h4>
@@ -36,8 +36,6 @@
                                 </div>
                             </div>
                         </div>
-                    
-                        <button type="submit" class="btn btn-primary">Thêm Sản Phẩm</button>
                       </form>
                 </div>
             </div>
