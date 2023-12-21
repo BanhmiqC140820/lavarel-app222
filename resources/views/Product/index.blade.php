@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('Product.children')
 
-<head>
+@section('page content')
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+            For more information about DataTables, please visit the <a target="_blank"
+                href="https://datatables.net">official DataTables documentation</a>.</p>
 
+<<<<<<< HEAD
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
@@ -56,8 +58,46 @@
             <!-- Heading -->
             <div class="sidebar-heading">
                 Addons
+=======
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+>>>>>>> Huy2
             </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <a href="{{route('product.create')}}" class="btn btn-primary">add</a>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>name</th>
+                                <th>price</th>
+                                <th>quantity</th>
+                                <th>origin</th>
+                                <th>img</th>
+                                <th>detail</th>
+                                <th>edit</th>
+                                <th>delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($products as $item)
+                            <tr>
+                                <td>{{$item->id}}</td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->price}}</td>
+                                <td>{{$item->quantity}}</td>
+                                <td>{{$item->origin}}</td>
+                                <td><img height="75" src="{{asset('images/'.$item->img)}}"></td>
+                                <td><a href="{{route('product.show',['product' => $item->id])}}" class="btn btn-info">detail</a></td>
+                                <td><a href="{{route('product.edit',['product' => $item->id])}}" class="btn btn-success">edit</a></td>
+                                <td><a href="{{route('product.destroy',['product' => $item->id])}}" class="btn btn-warning">delete</a></td>
+                            </tr>
+                            @endforeach
 
+<<<<<<< HEAD
             <!-- Nav Item - Pages Collapse Menu -->
                   <!-- Nav Item - Tables -->
                   <li class="nav-item">
@@ -79,7 +119,13 @@
                  </li>          
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+=======
+                        </tbody>
+>>>>>>> Huy2
 
+<<<<<<< Updated upstream
+                    </table>
+=======
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -340,15 +386,9 @@
                                             <td>{{$item->quantity}}</td>
                                             <td>{{$item->origin}}</td>
                                             <td><img height="75" src="{{asset('images/'.$item->img)}}"></td>
-                                            <td><a href="" class="btn btn-info">detail</a></td>
+                                            <td><a href="{{route('product.show',['product' => $item->id])}}" class="btn btn-info">detail</a></td>
                                             <td><a href="{{route('product.edit',['product' => $item->id])}}" class="btn btn-success">edit</a></td>
-                                            <td>
-                                                <form action="{{route('product.destroy',['product' => $item->id])}}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-warning">delete</button>
-                                                </form>
-                                            </td>
+                                            <td><a href="{{route('product.destroy',['product' => $item->id])}}" class="btn btn-warning">delete</a></td>
                                         </tr>
                                         @endforeach
 
@@ -401,28 +441,15 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="{{route('admin.logout')}}">Logout</a>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
+
     </div>
+    <!-- /.container-fluid -->
+@endsection
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('assets')}}/vendor/jquery/jquery.min.js"></script>
-    <script src="{{asset('assets')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset('assets')}}/vendor/jquery-easing/jquery.easing.min.js"></script>
+    
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('assets')}}/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{asset('assets')}}/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{asset('assets')}}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{asset('assets')}}/js/demo/datatables-demo.js"></script>
-
-</body>
-
-</html>
