@@ -40,7 +40,7 @@
         </li>
         
          <li class="nav-item">
-            <a class="nav-link" href="orders">
+            <a class="nav-link" href="Orders">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Orders</span></a>
          </li>          

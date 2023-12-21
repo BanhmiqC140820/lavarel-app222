@@ -15,11 +15,11 @@ class AdminController extends Controller
     }
 
     public function checklogin(Request $request){
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>0])){
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>1])){
             $request->session()->regenerate();
             return redirect()->route('admin.index');
         }else{
-            dd(Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>0]));
+            dd(Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>1]));
         }
     }
     public function index() {
