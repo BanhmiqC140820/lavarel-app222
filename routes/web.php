@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,10 +39,12 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::resource('admin/product', ProductController::class);
     Route::get('admin/logout', [AdminController::class, 'logout'])->name("admin.logout");
     Route::resource('admin/categories', CategoryController::class);
+    Route::resource('admin/Orders', OrdersController::class);
 });
 
 Route:: get('admin/login',[AdminController::class,'login'])->name("admin.login");
 Route:: post('admin/login',[AdminController::class,'checklogin'])->name("admin.loginpost");
+
 // Route:: get('admin/',[AdminController::class,'index'])->name("admin.index");
 
 
