@@ -57,9 +57,14 @@ class ProductController extends Controller
      */
     public function show( $id)
     {
+<<<<<<< Updated upstream
         //
         $product = Product::find($id);
         return view('product.show',compact('product'));
+=======
+        $product=Product::find($id);
+        return view('product.show')->with('product',$product);
+>>>>>>> Stashed changes
     }
 
     /**

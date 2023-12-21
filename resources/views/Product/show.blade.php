@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="en">
 @include('Product.layouts.head')
@@ -45,3 +46,8 @@
     @include('Product.layouts.bottom')
 </body>
 </html>
+=======
+<?php
+echo $product->name;
+?>
+>>>>>>> Stashed changes
