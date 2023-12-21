@@ -43,7 +43,13 @@
                                 <td><img height="75" src="{{asset('images/'.$item->img)}}"></td>
                                 <td><a href="{{route('product.show',['product' => $item->id])}}" class="btn btn-info">detail</a></td>
                                 <td><a href="{{route('product.edit',['product' => $item->id])}}" class="btn btn-success">edit</a></td>
-                                <td><a href="{{route('product.destroy',['product' => $item->id])}}" class="btn btn-warning">delete</a></td>
+                                <td>
+                                    <form action="{{route('product.destroy',['product' => $item->id])}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-warning">delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
 
