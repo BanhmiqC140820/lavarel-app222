@@ -316,36 +316,31 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <a href="{{route('categories.create')}}" class="btn btn-primary">add</a>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>name</th>
-                                            <th>detail</th>
-                                            <th>edit</th>
-                                            <th>delete</th>
+                                            <th>User name</th>
+                                            <th>Product name</th>
+                                            <th>price</th>
+                                            <th>Purchase date</th>
+                                            <th>total</th>
+                                            <th>confirm</th>
                                         </tr>
+                            
                                     </thead>
                                     <tbody>
-                                        @foreach ($categories as $item)
+                                        @foreach ($orders as $item)
                                         <tr>
-                                            <td>{{$item->id}}</td>
-                                            <td>{{$item->name}}</td>
-                                            <td><a href="" class="btn btn-info">detail</a></td>
-                                            <td><a href="{{route('categories.edit',['category' => $item->id])}}" class="btn btn-success">edit</a></td>
-                                            <td>
-                                                <form action="{{route('categories.destroy',['category' => $item->id])}}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-warning">delete</button>
-                                                </form>
-                                            </td>
+                                            <td>{{$item->user_name}}</td>
+                                            <td>{{$item->product_name}}</td>
+                                            <td>{{$item->price}}</td>
+                                            <td>{{$item->purchase_date}}</td>
+                                            <td>{{$item->thanhtien}}</td>
+                                            <td><a href="" class="btn btn-info">confirm</a></td>
                                         </tr>
                                         @endforeach
-
+                              
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
