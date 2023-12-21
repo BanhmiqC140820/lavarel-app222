@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ShoppingCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,8 @@ Route:: post('admin/login',[AdminController::class,'checklogin'])->name("admin.l
 
 Route::group(['middleware' => 'checkloginuser'], function () {
     Route::get('user/home', [ProductController::class, 'home'])->name("user.home");
+    Route::get('user/cart', [ShoppingCartController::class, 'index'])->name('shoppingcart');
+    // Route::get('user/viewcart', [ShoppingCartController::class, 'hienThiGioHang'])->name('hienThiGioHang');
 });
 
 Route:: get('user/login',[UserController::class,'login'])->name("user.login");
