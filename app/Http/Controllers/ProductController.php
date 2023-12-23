@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-
+use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     /**
@@ -16,6 +16,20 @@ class ProductController extends Controller
         $products = Product::all();
         return view('Product.index')->with('products', $products);
     }
+    public function productdetail(Request $request)
+    {
+        
+        $productId=$request->input('mh');
+        $product = Product::where('id', $productId)->first();
+        return view('ProductDetail.index')->with('products1', $product);
+    }
+
+        public function home()
+        {   $categories=Category::all();
+            $products = Product::all();
+            return view('Home.index', compact('products', 'categories'));
+            //return view('Home.index', ['products' => $products, 'categories' => $categories]);
+        }
 
     /**
      * Show the form for creating a new resource.
