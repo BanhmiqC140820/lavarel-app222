@@ -372,7 +372,7 @@
           @foreach($products as $product)
           <div class="col-lg-4 col-md-6 portfolio-item filter-{{$product->category_id}} px-2">
             <div class="border">
-              <div class="portfolio-img"><a href="{{route('productdetail',['mh'=> $product->id])}}"><img src="{{asset("images/".$product->img)}}" class="img-fluid" alt=""></a></div>
+              <div class="portfolio-img"><a href="{{route('productdetail2',["id"=>$product->id])}}"><img src="{{asset("images/".$product->img)}}" class="img-fluid" alt=""></a></div>
               <div class="portfolio-info">
                 <h4>{{ Str::limit($product->name, $limit = 20, $end = '...') }}</h4>
                 <p>{{$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}</p>

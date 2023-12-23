@@ -17,13 +17,19 @@ class ProductController extends Controller
         $products = Product::all();
         return view('Product.index')->with('products', $products);
     }
-    public function productdetail(Request $request)
-    {
+    // public function productdetail(Request $request)
+    // {
 
-        $productId = $request->input('mh');
-        $product = Product::where('id', $productId)->first();
+    //     $productId = $request->input('mh');
+    //     $product = Product::where('id', $productId)->first();
+    //     return view('ProductDetail.index')->with('products1', $product);
+    // }
+    public function productdetail($id)
+    {
+        $product = Product::find($id);
         return view('ProductDetail.index')->with('products1', $product);
     }
+
 
     public function home()
     {
