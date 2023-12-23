@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcceptShoppingCart;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
@@ -49,7 +50,11 @@ Route:: post('admin/login',[AdminController::class,'checklogin'])->name("admin.l
 Route::group(['middleware' => 'checkloginuser'], function () {
     Route::get('user/home', [ProductController::class, 'home'])->name("user.home");
     Route::get('user/cart', [ShoppingCartController::class, 'index'])->name('shoppingcart');
-    // Route::get('user/viewcart', [ShoppingCartController::class, 'hienThiGioHang'])->name('hienThiGioHang');
+    Route::get('user/deleteall', [ShoppingCartController::class, 'deleteall'])->name('deleteall');
+    Route::get('user/delete', [ShoppingCartController::class, 'delete'])->name('delete');
+    Route::post('user/update', [ShoppingCartController::class, 'update'])->name('update');
+    Route::get('user/accept', [AcceptShoppingCart::class, 'accept'])->name('acceptshoppingcart');
+    Route::get('user/productdetail', [ProductController::class, 'productdetail'])->name('productdetail');
 });
 
 Route:: get('user/login',[UserController::class,'login'])->name("user.login");

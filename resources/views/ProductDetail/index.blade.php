@@ -40,209 +40,6 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  <style>
-    *{
-    padding: 0;
-    margin: 0;
-   box-sizing: border-box;
-}
-body{
-	background-color: #f8f8f8; 
-}
-
-.container1{
-	width: 80%;
-	
-	min-height: 700px;
-	display: flex;
-	margin: 120px auto 20px auto;
-}
-.container_left{
-	width: 70%;
-	margin-right: 10px;
-	height: -webkit-fill-available;
-	overflow-y: auto;
-}
-
-
-
-.left_top{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: white;
-}
-.cbox{
-	
-	display: flex;
-	align-items: center;
-}
-.cbox a{
-	text-decoration: none;
-}
-.cbox span{
-	font-size: 18px;
-	font-weight: 600;
-	color: black;
-}
-.cbox :hover{
-	text-decoration: none;
-}
-.inputcbox{
-	width: 16px;
-	height: 16px;
-	margin: 0 10px;
-}
-.xoatatca button{
-	border: none;
-	outline: none;
-    background-color: white;
-    padding: 4px 22px;
-}
-.xoatatca button span,
-.xoatatca button i{
-	font-size: 18px;
-}
-.left_bottom{
-	display: flex;
-	align-items: center;
-	margin: 10px 0;
-	background-color: white;
-}
-.info{
-	width:50% ;
-	display: block;
-	display: flex;
-	align-items: center;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-
-.info span{
-	margin-left: 10px;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-
-.info img{
-	width: 80px;
-	height: 80px;
-	box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-}
-
-.price_count{
-	flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.price{
-	width: 65%;
-	text-align: center;
-}
-.price span{
-	display: block;
-	color: red;
-	font-weight: 600;
-	font-size: 18px;
-}
-.price i{
-	color: black;
-}
-.form_count .inputsl{
-	width: 60px;
-	
-}
-.form_count .submit{
-	font-size: 18px;
-	
-	color: black;
-}
-
-.count input{
-	width: 60px;
-	height: 24px;
-}
-.count form{
-	display: flex;
-	align-items: center;
-	
-}
-.count a:hover{
-	text-decoration: none;
-}
-.count a span{
-	font-size: 18px;
-	padding: 4px;
-	color: black;
-}
-
-
-
-
-.container_right{
-	flex: 1;
-	background-color: white;
-}
-
-.container_right h4{
-	font-size: 20px;
-	text-align: center;
-	
-}
-.container_right .wrap{
-	width: 100%;
-	display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px 0;
-    padding: 0 10px;
-}
-.wrap span{
-	font-size: 18px;
-}
-.container_right a button{
-	width: 100%;
-	height: 40px;
-	background-color: #A50A06;
-	color: white;
-	border: none;
-	font-size: 18px;
-}
-.ght{
-	width: 100%;
-	display: block  !important;
-}
-
- .tt {
-	padding: 4px 8px;
-	background-color: #A50A06;
-	
-	display: inline-block;
-	margin: 10px 0;
-}
- .tt a {
-	text-decoration: none;
-	color: white;
-}
- .tt a span{
-	font-size: 18px;
-}
-.giohangtrong{
-	width: 100%;
-	
-}
-.giohangtrong img{
-	width: 100%;
-	height: 100%;
-}
-
-
-
-
-  </style>
 </head>
 
 <body>
@@ -254,7 +51,7 @@ body{
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a class="text-center" href="{{route('user.home')}}">E-Commerce <br><span class="ms-5 " style="color: #47b2e4">Store</span></a></h1>
+      <h1 class="logo me-auto"><a class="text-center" href="index.html">E-Commerce <br><span class="ms-5 " style="color: #47b2e4">Store</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -266,7 +63,7 @@ body{
           <li><a class="nav-link scrollto" href="{{route('user.home')}}">Products</a></li>
           <li><a class="nav-link scrollto" href="{{route('user.home')}}">Team</a></li>          
           <li><a class="nav-link scrollto" href="{{route('user.home')}}">Contact</a></li>
-          <li ><a class="nav-link scrollto badge" href="#ShoppingCart">Shopping Cart
+          <li ><a class="nav-link scrollto badge" href="{{route('shoppingcart')}}">Shopping Cart
             @if(isset($giohang))
             <span class="badge bg-success rounded-pill mb-3">
                 {{ $giohangCount }}
@@ -302,98 +99,41 @@ body{
       </div>
     </div>
   </section>
-
-<div class="container1">
-        
-        @if($giohang!=null)
-            <div class="container_left">
-                <div class="left_top">
-                    <div class="cbox">
-                        
-                        <a href="{{route('deleteall')}}"><span>Xóa tất Cả </span></a>
+  <h1 class="text-center mt-5">Product Detail</h1>
+  <div class="container my-3">
+    <div class="row">
+        <div class="col-4">
+            <img src="{{$products1->img}}" alt="">
+        </div>
+        <div class="col-8"style="padding-top:80px">
+            <div>
+                <div class="d-flex">
+                    <div class="me-2">
+                        <div><span class="fw-bold">Product name: </span></div>
+                        <div><span class="fw-bold">Price: </span></div>
+                        <div><span class="fw-bold">Quantity: </span></div>
+                        <div><span class="fw-bold">Origin: </span></div>
+                        <div><span class="fw-bold">Description: </span></div>
                     </div>
-                    
-                    
-                </div>
-                
-                 @foreach($giohang as $g)
-                <div class="left_bottom">
-                    <div class="info">
-                        
-                        <img alt="" src="{{$g['img']}}">
-                        <span>{{$g['tenhang']}}</span>
-                    </div>
-                    <div class="price_count">
-                        <div class="price">
-                            <span>{{$formattedAmount = number_format($g['gia'], 0, ',', '.').' VNĐ'}}</span>
-                            
-                        </div>
-                        <div class="count mx-3">
-                            <form class="form_count" method="post" action="{{route('update',['mh' => $g['mahang']])}}">
-                              @csrf
-                              {{--de tranh tấn công bảo mật
-                                Laravel sẽ tự động tạo ra một trường ẩn chứa CSRF như sau:
-                                <input type="hidden" name="_token" value="csrf-token-value">
-                                --}}
-                                    <input class="inputsl" type="number" name="inputsl" value="{{$g['soluongmua']}}">
-                                    <input class="submit" type="submit" value="Sửa">
-                            </form>
-                        </div>
-                        <div class="count btn btn-danger">
-                          <a class="text-decoration-none " style="color: white" href="{{route('delete',['mh' => $g['mahang']])}}"><i class="fa-solid fa-trash-can"></i>Xóa</a>	
-                        </div>
+                    <div class="">
+                        <div>{{$products1->name}}</div>
+                        <div>{{$formattedAmount = number_format($products1->price, 0, ',', '.').' VNĐ'}}</div>
+                        <div>{{$products1->quantity}}</div>
+                        <div>{{$products1->origin}}</div>
+                        <div>{{$products1->description}}</div>
                     </div>
                 </div>
-                @endforeach
-                
-                <div class="tt">
-                    <a href="{{route('user.home')}}">
-                        <span>Tiếp tục mua hàng</span>
-                        <i class="fa-solid fa-caret-right"></i>
-                    </a>
-                </div>
-            
-            </div>
-            <div class="container_right">
-                <h4>Thông tin đơn hàng</h4>
-                <div class="wrap">
-                    
-             
-                    <span>Tổng cộng</span>
-                    <span>
-                      @php
-                          $sum = 0;
-                          foreach($giohang as $g)
-                              $sum += $g['soluongmua'] * $g['gia'];
-                          echo $formattedAmount = number_format($sum, 0, ',', '.').' VNĐ';
-                      @endphp
-                  </span>
-                </div>
-                <a href="{{route('acceptshoppingcart')}}">
-                    <button>
-                        Xác nhận giỏ hàng 
-                    </button>
+                <a href="{{ route('shoppingcart', ['mh' => $products1->id, 'th' => $products1->name, 'gia' => $products1->price, 'img' => $products1->img]) }}" class="mt-2 btn btn-success" >
+                    Add to cart
                 </a>
             </div>
-            @else
-            <div class="ght">
-                <div class="giohangtrong">
-                <img alt="" src="https://maytot.com.vn/upload/image/cart.png">
-                
-                </div>
-                <div class="tt">
-                        <a href="htsanphamController">
-                            <span>Tiếp tục mua hàng</span>
-                            <i class="fa-solid fa-caret-right"></i>
-                        </a>
-                </div>
-            </div>
-            
-         
-        @endif    
-    </div>   
+           
+           
+        </div>
+      </div>
+  </div>
+  
   <footer id="footer">
-
     <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">

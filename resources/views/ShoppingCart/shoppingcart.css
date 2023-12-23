@@ -1,0 +1,275 @@
+*{
+    padding: 0;
+    margin: 0;
+   box-sizing: border-box;
+}
+body{
+	background-color: #f8f8f8; 
+}
+
+.container{
+	width: 80%;
+	
+	min-height: 500px;
+	display: flex;
+	margin: 120px auto 20px auto;
+}
+.container_left{
+	width: 70%;
+	margin-right: 10px;
+	height: -webkit-fill-available;
+	overflow-y: auto;
+}
+
+
+
+.left_top{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: white;
+}
+.cbox{
+	
+	display: flex;
+	align-items: center;
+}
+.cbox a{
+	text-decoration: none;
+}
+.cbox span{
+	font-size: 18px;
+	font-weight: 600;
+	color: black;
+}
+.cbox :hover{
+	text-decoration: none;
+}
+.inputcbox{
+	width: 16px;
+	height: 16px;
+	margin: 0 10px;
+}
+.xoatatca button{
+	border: none;
+	outline: none;
+    background-color: white;
+    padding: 4px 22px;
+}
+.xoatatca button span,
+.xoatatca button i{
+	font-size: 18px;
+}
+.left_bottom{
+	display: flex;
+	align-items: center;
+	margin: 10px 0;
+	background-color: white;
+}
+.info{
+	width:50% ;
+	display: block;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.info span{
+	margin-left: 10px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.info img{
+	width: 80px;
+	height: 80px;
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+.price_count{
+	flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.price{
+	width: 15%;
+	text-align: center;
+}
+.price span{
+	display: block;
+	color: red;
+	font-weight: 600;
+	font-size: 18px;
+}
+.price i{
+	color: black;
+}
+.form_count .inputsl{
+	width: 60px;
+	
+}
+.form_count .submit{
+	font-size: 18px;
+	
+	color: black;
+}
+
+.count input{
+	width: 60px;
+	height: 24px;
+}
+.count form{
+	display: flex;
+	align-items: center;
+	
+}
+.count a:hover{
+	text-decoration: none;
+}
+.count a span{
+	font-size: 18px;
+	padding: 4px;
+	color: black;
+}
+
+
+
+
+.container_right{
+	flex: 1;
+	background-color: white;
+}
+
+.container_right h4{
+	font-size: 20px;
+	text-align: center;
+	
+}
+.container_right .wrap{
+	width: 100%;
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+.wrap span{
+	font-size: 18px;
+}
+.container_right a button{
+	width: 100%;
+	height: 40px;
+	background-color: #A50A06;
+	color: white;
+	border: none;
+	font-size: 18px;
+}
+.ght{
+	width: 100%;
+	display: block  !important;
+}
+
+ .tt {
+	padding: 4px 8px;
+	background-color: #A50A06;
+	
+	display: inline-block;
+	margin: 10px 0;
+}
+ .tt a {
+	text-decoration: none;
+	color: white;
+}
+ .tt a span{
+	font-size: 18px;
+}
+.giohangtrong{
+	width: 100%;
+	
+}
+.giohangtrong img{
+	width: 100%;
+	height: 100%;
+}
+/*
+    pc>=1024px
+    tablet >=740px & < 1024px
+    mobile <740px
+*/
+
+/*pc*/
+
+@media (min-width : 1025px){
+
+	
+
+}
+
+/*table*/
+
+@media (min-width : 740px) and (max-width : 1023px){
+.container{
+	width: 100%;
+	margin-top: 170px;
+	padding-left: 20px;
+    padding-right: 20px;
+	
+}
+.left_bottom{
+	justify-content: space-between;
+}
+
+.info{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;	
+}
+.container_right .wrap{
+	flex-direction: column;
+}
+.wrap span{
+	margin-bottom: 10px;
+}
+	
+}
+
+/*mobile*/
+
+@media (max-width : 739px){
+
+.container{
+	width: 100%;
+	margin-top: 80px;
+	flex-direction: column;
+}
+.left_bottom{
+	padding: 10px 0;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.container_left{
+	width: 100%;
+	padding: 0 20px;
+}
+
+.info{
+	width: 100%;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;	
+}
+.price{
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.price_count{
+	width: 100%;
+}
+
+}

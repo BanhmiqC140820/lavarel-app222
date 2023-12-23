@@ -45,6 +45,11 @@
 </head>
 
 <body>
+  @php
+   $giohang = Session::get('giohang', []);
+    $giohangCount = count($giohang);
+  
+  @endphp
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
@@ -62,7 +67,18 @@
           <li><a class="nav-link scrollto" href="#portfolio">Products</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>          
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li ><a class="nav-link scrollto badge" href="#ShoppingCart">Shopping Cart</a></li>
+          <li ><a class="nav-link scrollto badge" href="{{route('shoppingcart')}}">Shopping Cart
+            @if(isset($giohang))
+                <span class="badge bg-success rounded-pill mb-3">
+                    {{ $giohangCount }}
+                </span>
+            @else
+                <span class="badge bg-danger rounded-pill mb-3">
+                    0
+                </span>
+            @endif
+          
+          </a></li>
           <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -356,12 +372,12 @@
           @foreach($products as $product)
           <div class="col-lg-4 col-md-6 portfolio-item filter-{{$product->category_id}} px-2">
             <div class="border">
-              <div class="portfolio-img"><img src="{{$product->img}}" class="img-fluid" alt=""></div>
+              <div class="portfolio-img"><a href="{{route('productdetail',['mh'=> $product->id])}}"><img src="{{$product->img}}" class="img-fluid" alt=""></a></div>
               <div class="portfolio-info">
                 <h4>{{ Str::limit($product->name, $limit = 20, $end = '...') }}</h4>
                 <p>{{$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}</p>
-                <a href="{{ route('shoppingcart', ['mh' => $product->id, 'th' => $product->name, 'gia' => $product->price, 'img' => $product->img]) }}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bxs-shopping-bag"></i></a>
-                <a href="{{ route('shoppingcart', ['mh' => $product->id, 'th' => $product->name, 'gia' => $product->price, 'img' => $product->img]) }}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                <a href="{{$product->img}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{Str::limit($product->name, $limit = 20, $end = '...')."<br>".$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}" ><i class="bx bxs-shopping-bag"></i></a>
+                <a href="{{ route('shoppingcart', ['mh' => $product->id, 'th' => $product->name, 'gia' => $product->price, 'img' => $product->img]) }}" class="details-link" title="More Details"><i class="bx bxs-shopping-bag"></i></a>
               </div>
             </div>
             

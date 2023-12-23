@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -20,6 +21,8 @@ class UserController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>0])) {
+            $user = User::where('email', $request->email)->first();
+            Session::put('user', $user);
             return redirect()->route('user.home');
         } else {
             echo " dang nhap that bai";

@@ -17,5 +17,5 @@ class ShoppingCart extends Model
         'soluongmua',
         'img',
     ];
-
+    
 }
