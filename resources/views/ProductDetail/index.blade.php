@@ -103,7 +103,7 @@
   <div class="container my-3">
     <div class="row">
         <div class="col-4">
-            <img src="{{$products1->img}}" alt="">
+            <img src="{{asset('images/'.$products1->img)}}" alt="">
         </div>
         <div class="col-8"style="padding-top:80px">
             <div>
