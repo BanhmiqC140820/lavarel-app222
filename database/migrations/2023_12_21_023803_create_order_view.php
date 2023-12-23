@@ -11,23 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("CREATE OR REPLACE VIEW `order_view` AS
-        SELECT
-            users.id as user_id,
-            users.name as user_name,
-            products.name as product_name,
-            products.price,
-            invoices.purchase_date,
-            invoices_detail.is_purchased,
-            invoices_detail.quantity_purchase * products.price as thanhtien,
-            invoices_detail.id
-        FROM
-            laravelapp.products
-        INNER JOIN laravelapp.invoices_detail ON laravelapp.products.id = laravelapp.invoices_detail.product_id
-        INNER JOIN laravelapp.invoices ON laravelapp.invoices.id = laravelapp.invoices_detail.invoice_id
-        INNER JOIN laravelapp.users ON laravelapp.invoices.customer_id = laravelapp.users.id;
-        WHERE invoices_detail.is_purchased = 0
-        ");
+        DB::statement(
+            "CREATE 
+                ALGORITHM = UNDEFINED 
+                DEFINER = `root`@`localhost` 
+                SQL SECURITY DEFINER
+            VIEW `laravelapp`.`order_view` AS
+                SELECT 
+                    `laravelapp`.`users`.`id` AS `user_id`,
+                    `laravelapp`.`users`.`name` AS `user_name`,
+                    `laravelapp`.`products`.`name` AS `product_name`,
+                    `laravelapp`.`products`.`price` AS `price`,
+                    `laravelapp`.`invoices`.`purchase_date` AS `purchase_date`,
+                    `laravelapp`.`invoices_detail`.`is_purchased` AS `is_purchased`,
+                    (`laravelapp`.`invoices_detail`.`quantity_purchase` * `laravelapp`.`products`.`price`) AS `thanhtien`,
+                    `laravelapp`.`invoices_detail`.`id` AS `id`
+                FROM
+                    (((`laravelapp`.`products`
+                    JOIN `laravelapp`.`invoices_detail` ON ((`laravelapp`.`products`.`id` = `laravelapp`.`invoices_detail`.`product_id`)))
+                    JOIN `laravelapp`.`invoices` ON ((`laravelapp`.`invoices`.`id` = `laravelapp`.`invoices_detail`.`invoice_id`)))
+                    JOIN `laravelapp`.`users` ON ((`laravelapp`.`invoices`.`customer_id` = `laravelapp`.`users`.`id`)))
+                WHERE
+                    (`laravelapp`.`invoices_detail`.`is_purchased` = 0)"
+            );
     }
 
     /**
@@ -37,5 +43,4 @@ return new class extends Migration
     {
         DB::statement("DROP VIEW IF EXISTS order_view");
     }
-    
 };
