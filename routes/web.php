@@ -1,12 +1,17 @@
 <?php
 
+use App\Http\Controllers\AcceptShoppingCart;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+
 use App\Http\Controllers\OrdersController;
+
+use App\Http\Controllers\ShoppingCartController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +24,11 @@ use App\Http\Controllers\OrdersController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
+
+Route::get('/', function () {
+    return view('User.login');
+});
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -41,21 +48,34 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::resource('admin/categories', CategoryController::class);
     Route::resource('admin/Orders', OrdersController::class);
 });
-
-Route:: get('admin/login',[AdminController::class,'login'])->name("admin.login");
-Route:: post('admin/login',[AdminController::class,'checklogin'])->name("admin.loginpost");
+Route::get('admin/login', [AdminController::class, 'login'])->name("admin.login");
+Route::post('admin/login', [AdminController::class, 'checklogin'])->name("admin.loginpost");
 
 // Route:: get('admin/',[AdminController::class,'index'])->name("admin.index");
 
+Route::group(['middleware' => 'checkloginuser'], function () {
+    Route::get('user/home', [ProductController::class, 'home'])->name("user.home");
+    Route::get('user/cart', [ShoppingCartController::class, 'index'])->name('shoppingcart');
+    Route::get('user/deleteall', [ShoppingCartController::class, 'deleteall'])->name('deleteall');
+    Route::get('user/delete', [ShoppingCartController::class, 'delete'])->name('delete');
+    Route::post('user/update', [ShoppingCartController::class, 'update'])->name('update');
+    Route::get('user/accept', [AcceptShoppingCart::class, 'accept'])->name('acceptshoppingcart');
+    // Route::get('user/productdetail', [ProductController::class, 'productdetail'])->name('productdetail');
+    Route::get('user/productdetail/{id}', [ProductController::class, 'productdetail'])->name('productdetail');
+});
 
-// Route:: resource('admin/product',ProductController::class);
+Route::get('user/login', [UserController::class, 'login'])->name("user.login");
 
 
-Route:: get('login',[UserController::class,'login']);
-Route:: post('login',[UserController::class,'checklogin'])->name('user.loginpost');
 
-Route:: get('register',[UserController::class,'register'])->name('user.register');
-Route:: post('register',[UserController::class,'store'])->name('user.create');
+Route::post('user/login', [UserController::class, 'checklogin'])->name('user.loginpost');
 
 
-require __DIR__.'/auth.php';
+
+
+Route::get('login', [UserController::class, 'login']);
+Route::get('register', [UserController::class, 'register'])->name('user.register');
+Route::post('register', [UserController::class, 'store'])->name('user.create');
+
+
+require __DIR__ . '/auth.php';
