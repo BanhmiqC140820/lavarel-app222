@@ -16,16 +16,16 @@ class CheckLoginMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-               // Check if the user is authenticated
-               if (!Auth::check()) {
-                // Redirect to the login page if not logged in
-                abort(403, 'Unauthorized action.');
-            }
-            if (Auth::user()->role != '1') {
-                // Redirect to a forbidden page or perform other actions as needed
-                abort(403, 'Unauthorized action.');
-            }
-            // User is logged in, proceed with the request
-            return $next($request);
+        // Check if the user is authenticated
+        if (!Auth::check()) {
+            // Redirect to the login page if not logged in
+            return redirect()->route("admin.login");
+        }
+        if (Auth::user()->role != '1') {
+            // Redirect to a forbidden page or perform other actions as needed
+            abort(403, 'Unauthorized action.');
+        }
+        // User is logged in, proceed with the request
+        return $next($request);
     }
 }

@@ -336,7 +336,15 @@
                                             <td>{{$item->price}}</td>
                                             <td>{{$item->purchase_date}}</td>
                                             <td>{{$item->thanhtien}}</td>
-                                            <td><a href="" class="btn btn-info">confirm</a></td>
+                                            <td>
+                                                {{-- <a href="{{route("Orders.update",["Order"=>$item->id])}}" class="btn btn-info"></a> --}}
+                                            <form action="{{route("Orders.update",["Order"=>$item->id])}}" method="POST">
+                                                @csrf
+                                                @method("PUT")
+                                                 <button type="submit" class="btn btn-info">confirm</button>
+                                                </form>
+                                            
+                                            </td>
                                         </tr>
                                         @endforeach
                               
