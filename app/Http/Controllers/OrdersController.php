@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ViewOrders;
+use App\Models\InvoiceDetail;
+use App\Models\Invoice;
 
 class OrdersController extends Controller
 {
@@ -54,7 +56,10 @@ class OrdersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $invoices_detail=InvoiceDetail::find($id)->update([
+            "is_purchased"=>"1"
+        ]);
+        return redirect()->route("Orders.index");
     }
 
     /**
