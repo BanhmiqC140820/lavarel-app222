@@ -41,10 +41,14 @@ class AdminController extends Controller
         $PENDING = DB::table('laravelapp.order_view')
             ->select(DB::raw('count(id) as PENDING'))
             ->first();
+        $TASK = DB::table('laravelapp.statistics_table')
+            ->select(DB::raw('count(id) as TASK'))
+            ->first();
         $info = [
             "day" => $DAYLY->DAYLY ?? 0, // Default to 0 if no records found
             "month" => $MONTHLY->MONTHLY ?? 0,
-            "pending"=> $PENDING->PENDING ?? 0 // Default to 0 if no records found
+            "pending" => $PENDING->PENDING ?? 0 ,// Default to 0 if no records found
+            "task"  => (1-$PENDING->PENDING/$TASK->TASK)*100 ?? 100
         ];
         // dd($info);
 
