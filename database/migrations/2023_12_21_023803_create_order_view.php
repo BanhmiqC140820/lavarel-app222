@@ -25,8 +25,8 @@ return new class extends Migration
             laravelapp.products
         INNER JOIN laravelapp.invoices_detail ON laravelapp.products.id = laravelapp.invoices_detail.product_id
         INNER JOIN laravelapp.invoices ON laravelapp.invoices.id = laravelapp.invoices_detail.invoice_id
-        INNER JOIN laravelapp.users ON laravelapp.invoices.customer_id = laravelapp.users.id;
-        WHERE invoices_detail.is_purchased = 0
+        INNER JOIN laravelapp.users ON laravelapp.invoices.customer_id = laravelapp.users.id
+        WHERE invoices_detail.is_purchased = 0;
         ");
     }
 
