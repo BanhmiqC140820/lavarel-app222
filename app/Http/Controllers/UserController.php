@@ -28,6 +28,13 @@ class UserController extends Controller
             echo " dang nhap that bai";
         }
     }
+    public function logout( )
+    {
+        Session::forget('user');
+        return redirect()->route('user.login')->withHeaders([
+            'Refresh' => '0'
+        ]);
+    }
     public function index()
     {
         return view("User.index");

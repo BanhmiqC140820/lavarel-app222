@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\Session;
 class AcceptShoppingCart extends Controller
 {
     function accept(){
-        $user=Session::get('user');
-        $giohang=Session::get('giohang');
+       
+        $userId = Session::get('user'); 
+        $userKey = 'giohang_' . $userId['id'];
+        $giohang = Session::get($userKey,[]);
         if($giohang!=null &&  !empty($giohang)){
             $hoaDon = Invoice::create([
-                'customer_id' => $user['id'],
+                'customer_id' => $userId['id'],
                 'purchase_date' => Carbon::now(),
                 'is_purchased' => 0,
                
@@ -29,7 +31,7 @@ class AcceptShoppingCart extends Controller
                     'is_purchased' => 0, 
                 ]);
             }
-            Session::forget('giohang');
+            Session::forget($userKey);
         }
         return redirect()->route('user.home');
     }
