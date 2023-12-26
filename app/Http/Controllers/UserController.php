@@ -25,7 +25,7 @@ class UserController extends Controller
             Session::put('user', $user);
             return redirect()->route('user.home');
         } else {
-            echo " dang nhap that bai";
+            abort(403, 'Unauthorized action.');
         }
     }
     public function logout( )

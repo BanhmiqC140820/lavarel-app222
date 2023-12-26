@@ -22,7 +22,7 @@ class AdminController extends Controller
             $request->session()->regenerate();
             return redirect()->route('admin.index');
         } else {
-            dd(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 1]));
+           abort(403, 'Unauthorized action.');
         }
     }
     public function index()
@@ -44,12 +44,12 @@ class AdminController extends Controller
         $TASK = DB::table('laravelapp.statistics_table')
             ->select(DB::raw('count(id) as TASK'))
             ->first();
-            $taskPercentage = ($TASK->TASK != 0) ? (1 - $PENDING->PENDING / $TASK->TASK) * 100 : 100;
+            
         $info = [
             "day" => $DAYLY->DAYLY ?? 0, // Default to 0 if no records found
             "month" => $MONTHLY->MONTHLY ?? 0,
             "pending" => $PENDING->PENDING ?? 0, // Default to 0 if no records found
-            "task"  => (1 - $PENDING->PENDING ?? 0 / $TASK->TASK ?? 1) * 100
+            "task"  => ($PENDING->PENDING  / $TASK->TASK )*100 
         ];
         // dd($info);
 
