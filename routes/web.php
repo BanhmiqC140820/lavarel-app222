@@ -64,7 +64,7 @@ Route::group(['middleware' => 'checkloginuser'], function () {
     // Route::get('user/productdetail', [ProductController::class, 'productdetail'])->name('productdetail');
     Route::get('user/productdetail/{id}', [ProductController::class, 'productdetail'])->name('productdetail');
 
-    Route::get('user/productdetail', [ProductController::class, 'productdetail'])->name('productdetail');
+    // Route::get('user/productdetail', [ProductController::class, 'productdetail'])->name('productdetail');
     Route::get('user/logout', [UserController::class, 'logout'])->name('logout');
 
 });
