@@ -60,8 +60,13 @@ Route::group(['middleware' => 'checkloginuser'], function () {
     Route::get('user/delete', [ShoppingCartController::class, 'delete'])->name('delete');
     Route::post('user/update', [ShoppingCartController::class, 'update'])->name('update');
     Route::get('user/accept', [AcceptShoppingCart::class, 'accept'])->name('acceptshoppingcart');
+
     // Route::get('user/productdetail', [ProductController::class, 'productdetail'])->name('productdetail');
     Route::get('user/productdetail/{id}', [ProductController::class, 'productdetail'])->name('productdetail');
+
+    Route::get('user/productdetail', [ProductController::class, 'productdetail'])->name('productdetail');
+    Route::get('user/logout', [UserController::class, 'logout'])->name('logout');
+
 });
 
 Route::get('user/login', [UserController::class, 'login'])->name("user.login");

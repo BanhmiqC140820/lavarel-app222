@@ -44,14 +44,16 @@
 
 <body>
   <?php 
-    $giohang = Session::get('giohang', []);
+     $userId = Session::get('user'); 
+        $userKey = 'giohang_' . $userId['id'];
+        $giohang = Session::get($userKey,[]);
     $giohangCount = count($giohang);
         ?>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a class="text-center" href="index.html">E-Commerce <br><span class="ms-5 " style="color: #47b2e4">Store</span></a></h1>
+      <h1 class="logo me-auto"><a class="text-center" href="{{route('user.home')}}">E-Commerce <br><span class="ms-5 " style="color: #47b2e4">Store</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -100,7 +102,7 @@
     </div>
   </section>
   <h1 class="text-center mt-5">Product Detail</h1>
-  <div class="container my-3">
+  <div class="container my-3 mx-auto" s>
     <div class="row">
         <div class="col-4">
             <img src="{{asset('images/'.$products1->img)}}" alt="">
