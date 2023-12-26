@@ -46,8 +46,11 @@
 
 <body>
   @php
-   $giohang = Session::get('giohang', []);
+   $userId = Session::get('user'); 
+    $userKey = 'giohang_' . $userId['id'];
+    $giohang = Session::get($userKey,[]);
     $giohangCount = count($giohang);
+ 
   
   @endphp
 
@@ -79,7 +82,7 @@
             @endif
           
           </a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+          <li><a class="getstarted scrollto" href="{{route('logout')}}">Log out</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -376,8 +379,10 @@
               <div class="portfolio-info">
                 <h4>{{ Str::limit($product->name, $limit = 20, $end = '...') }}</h4>
                 <p>{{$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}</p>
+
                 <a href="{{asset("images/".$product->img)}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{Str::limit($product->name, $limit = 20, $end = '...')."<br>".$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}" ><i class="bx bxs-shopping-bag"></i></a>
                 <a href="{{ route('shoppingcart', ['mh' => $product->id, 'th' => $product->name, 'gia' => $product->price, 'img' => $product->img]) }}" class="details-link" title="More Details"><i class="bx bxs-shopping-bag"></i></a>
+
               </div>
             </div>
             

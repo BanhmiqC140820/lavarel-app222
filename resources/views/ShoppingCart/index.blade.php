@@ -73,7 +73,9 @@ body{
 	background-color: white;
 }
 .cbox{
-	
+  padding-left: 10px;
+  margin: 5px;
+	height: 50px;
 	display: flex;
 	align-items: center;
 }
@@ -153,12 +155,17 @@ body{
 }
 .form_count .inputsl{
 	width: 60px;
-	
+  border-color: #ffc107;
 }
 .form_count .submit{
+  height: 38px;
 	font-size: 18px;
-	
+  color: #000;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    border-radius: 5px;
 	color: black;
+  margin: 5px;
 }
 
 .count input{
@@ -183,6 +190,7 @@ body{
 
 
 .container_right{
+  
 	flex: 1;
 	background-color: white;
 }
@@ -206,7 +214,7 @@ body{
 .container_right a button{
 	width: 100%;
 	height: 40px;
-	background-color: #A50A06;
+	background-color: #47b2e4;
 	color: white;
 	border: none;
 	font-size: 18px;
@@ -217,8 +225,9 @@ body{
 }
 
  .tt {
+  border-radius: 5px;
 	padding: 4px 8px;
-	background-color: #A50A06;
+	background-color: rgb(71,178,228);
 	
 	display: inline-block;
 	margin: 10px 0;
@@ -247,7 +256,9 @@ body{
 
 <body>
   <?php 
-    $giohang = Session::get('giohang', []);
+    $userId = Session::get('user'); 
+    $userKey = 'giohang_' . $userId['id'];
+    $giohang = Session::get($userKey,[]);
     $giohangCount = count($giohang);
         ?>
   <!-- ======= Header ======= -->
@@ -277,7 +288,7 @@ body{
                 </span>
             @endif  
           </a></li>
-          <li><a class="getstarted scrollto" href="{{route('user.home')}}">Get Started</a></li>
+          <li><a class="getstarted scrollto" href="{{route('logout')}}">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -336,7 +347,7 @@ body{
                                 <input type="hidden" name="_token" value="csrf-token-value">
                                 --}}
                                     <input class="inputsl" type="number" name="inputsl" value="{{$g['soluongmua']}}">
-                                    <input class="submit" type="submit" value="Sửa">
+                                    <input class="submit " type="submit" value="Sửa">
                             </form>
                         </div>
                         <div class="count btn btn-danger">
