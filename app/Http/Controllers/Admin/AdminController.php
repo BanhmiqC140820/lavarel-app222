@@ -48,8 +48,8 @@ class AdminController extends Controller
         $info = [
             "day" => $DAYLY->DAYLY ?? 0, // Default to 0 if no records found
             "month" => $MONTHLY->MONTHLY ?? 0,
-            "pending" => $PENDING->PENDING ?? 0 ,// Default to 0 if no records found
-            "task"  => $taskPercentage
+            "pending" => $PENDING->PENDING ?? 0, // Default to 0 if no records found
+            "task"  => (1 - $PENDING->PENDING ?? 0 / $TASK->TASK ?? 1) * 100
         ];
         // dd($info);
 
