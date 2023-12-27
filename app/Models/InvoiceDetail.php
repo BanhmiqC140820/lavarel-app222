@@ -9,7 +9,7 @@ class InvoiceDetail extends Model
 {
     use HasFactory;
     protected $table = 'invoices_detail';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'id','product_id', 'invoice_id', 'quantity_purchase','is_purchased'
     ];

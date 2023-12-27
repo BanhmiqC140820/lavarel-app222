@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
+
 class ProductController extends Controller
 {
     /**
@@ -16,20 +17,27 @@ class ProductController extends Controller
         $products = Product::all();
         return view('Product.index')->with('products', $products);
     }
-    public function productdetail(Request $request)
+    // public function productdetail(Request $request)
+    // {
+
+    //     $productId = $request->input('mh');
+    //     $product = Product::where('id', $productId)->first();
+    //     return view('ProductDetail.index')->with('products1', $product);
+    // }
+    public function productdetail($id)
     {
-        
-        $productId=$request->input('mh');
-        $product = Product::where('id', $productId)->first();
+        $product = Product::find($id);
         return view('ProductDetail.index')->with('products1', $product);
     }
 
-        public function home()
-        {   $categories=Category::all();
-            $products = Product::all();
-            return view('Home.index', compact('products', 'categories'));
-            //return view('Home.index', ['products' => $products, 'categories' => $categories]);
-        }
+
+    public function home()
+    {
+        $categories = Category::all();
+        $products = Product::all();
+        return view('Home.index', compact('products', 'categories'));
+        //return view('Home.index', ['products' => $products, 'categories' => $categories]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -46,7 +54,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
         $product = new Product([
             'name' => $request->input('productName'),
             'description' => $request->input('productDescription'),
@@ -56,12 +63,13 @@ class ProductController extends Controller
             'category_id' => $request->input('productCategory')
         ]);
         $product->id_product = 'SP' . str_pad(Product::count() + 1, 4, '0', STR_PAD_LEFT);
-        $generatedImageName = 'image' . time() . '-'
+        if($request->productImage!=null){
+            $generatedImageName = 'image' . time() . '-'
             . $product->id_product . '.'
             . $request->productImage->extension();
         $request->productImage->move(public_path('images'), $generatedImageName);
-
         $product->img = $generatedImageName;
+        }
         $product->save();
         return redirect()->route('product.index');
     }
@@ -69,9 +77,11 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+
+        $product = Product::find($id);
+        return view('product.show')->with('product', $product);
     }
 
     /**
@@ -94,17 +104,22 @@ class ProductController extends Controller
     {
         //
         $product = Product::find($id);
-        $generatedImageName = 'image' . time() . '-'
+        if($request->productImage!=null){
+            $generatedImageName = 'image' . time() . '-'
             . $product->id_product . '.'
             . $request->productImage->extension();
         $request->productImage->move(public_path('images'), $generatedImageName);
+        $product->update([
+            'img'=>$generatedImageName
+        ]);
+        }
+
         $product->update([
             'name' => $request->input('productName'),
             'description' => $request->input('productDescription'),
             'price' => $request->input('productPrice'),
             'quantity' => $request->input('productCount'),
             'origin' => $request->input('productOrigin'),
-            'img'=>$generatedImageName
         ]);
         // dd($product);
         // $product = Product::where('id', $id)

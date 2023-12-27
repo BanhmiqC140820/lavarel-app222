@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('users');
             $table->date('purchase_date');
-            $table->boolean('is_purchased');
+            $table->boolean('is_purchased')->default(false);
             $table->timestamps();
         });
     }

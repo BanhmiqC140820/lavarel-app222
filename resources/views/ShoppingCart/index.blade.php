@@ -331,7 +331,7 @@ body{
                 <div class="left_bottom">
                     <div class="info">
                         
-                        <img alt="" src="{{$g['img']}}">
+                        <img alt="" src="{{asset("images/".$g['img'])}}">
                         <span>{{$g['tenhang']}}</span>
                     </div>
                     <div class="price_count">

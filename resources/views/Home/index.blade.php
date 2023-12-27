@@ -375,12 +375,14 @@
           @foreach($products as $product)
           <div class="col-lg-4 col-md-6 portfolio-item filter-{{$product->category_id}} px-2">
             <div class="border">
-              <div class="portfolio-img"><a href="{{route('productdetail',['mh'=> $product->id])}}"><img src="{{$product->img}}" class="img-fluid" alt=""></a></div>
+              <div class="portfolio-img"><a href="{{route('productdetail',["id"=>$product->id])}}"><img src="{{asset("images/".$product->img)}}" class="img-fluid" alt=""></a></div>
               <div class="portfolio-info">
                 <h4>{{ Str::limit($product->name, $limit = 20, $end = '...') }}</h4>
                 <p>{{$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}</p>
-                <a href="{{$product->img}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{Str::limit($product->name, $limit = 20, $end = '...')."<br>".$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}" ><i class="bi bi-zoom-in"></i></a>
+
+                <a href="{{asset("images/".$product->img)}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{Str::limit($product->name, $limit = 20, $end = '...')."<br>".$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}" ><i class="bi bi-zoom-in"></i></a>
                 <a href="{{ route('shoppingcart', ['mh' => $product->id, 'th' => $product->name, 'gia' => $product->price, 'img' => $product->img]) }}" class="details-link" title="More Details"><i class="bi bi-cart3"></i></a>
+
               </div>
             </div>
             
