@@ -44,7 +44,7 @@ class AdminController extends Controller
         $TASK = DB::table('laravelapp.statistics_table')
             ->select(DB::raw('count(id) as TASK'))
             ->first();
-            $taskPercentage = ($TASK->TASK != 0) ? (1 - $PENDING->PENDING / $TASK->TASK) * 100 : 100;
+       
         $info = [
             "day" => $DAYLY->DAYLY ?? 0, // Default to 0 if no records found
             "month" => $MONTHLY->MONTHLY ?? 0,
