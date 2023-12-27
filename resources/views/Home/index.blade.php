@@ -380,8 +380,8 @@
                 <h4>{{ Str::limit($product->name, $limit = 20, $end = '...') }}</h4>
                 <p>{{$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}</p>
 
-                <a href="{{asset("images/".$product->img)}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{Str::limit($product->name, $limit = 20, $end = '...')."<br>".$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}" ><i class="bx bxs-shopping-bag"></i></a>
-                <a href="{{ route('shoppingcart', ['mh' => $product->id, 'th' => $product->name, 'gia' => $product->price, 'img' => $product->img]) }}" class="details-link" title="More Details"><i class="bx bxs-shopping-bag"></i></a>
+                <a href="{{asset("images/".$product->img)}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="{{Str::limit($product->name, $limit = 20, $end = '...')."<br>".$formattedAmount = number_format($product->price, 0, ',', '.').' VNĐ'}}" ><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ route('shoppingcart', ['mh' => $product->id, 'th' => $product->name, 'gia' => $product->price, 'img' => $product->img]) }}" class="details-link" title="More Details"><i class="bi bi-cart3"></i></a>
 
               </div>
             </div>
