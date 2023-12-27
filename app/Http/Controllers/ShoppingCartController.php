@@ -21,7 +21,10 @@ class ShoppingCartController extends Controller
         $gia = (int) $giaTam;
         if($mh!=null && $th!=null && $giaTam!=null&& $img!=null){
  // Lấy giỏ hàng từ session hoặc tạo mới nếu chưa có
-                $giohang = Session::get('giohang',[]);
+                $userId = Session::get('user');
+                if($userId !=null){
+                    $userKey = 'giohang_' . $userId['id'];
+                $giohang = Session::get($userKey,[]);
 
                 $found = false;
 
@@ -49,6 +52,10 @@ class ShoppingCartController extends Controller
                 // Lưu giỏ hàng vào session
                 Session::put('giohang', $giohang);
                 return view('ShoppingCart.index');
+                }else{
+                    return redirect()->route('user.login');
+                }
+                
         }
         else{
             return view('ShoppingCart.index');
