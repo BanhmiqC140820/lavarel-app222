@@ -12,7 +12,9 @@
    <!-- bootstrap -->
  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
   <!-- Favicons -->
 
   <link href="{{asset('assets1')}}/img/favicon.png" rel="icon">
@@ -381,7 +383,7 @@ body{
                   </span>
                 </div>
                 <a href="{{route('acceptshoppingcart')}}">
-                    <button>
+                    <button type="button" onclick="submitPayment()">
                         Xác nhận giỏ hàng 
                     </button>
                 </a>
@@ -498,6 +500,19 @@ body{
   <script src="{{asset('assets1')}}/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="{{asset('assets1')}}/vendor/php-email-form/validate.js"></script>
 
+  <script>
+    function submitPayment() {
+        // Perform your payment logic here (e.g., AJAX request)
+
+        // Show SweetAlert2 notification
+        Swal.fire({
+            icon: 'success',
+            title: 'Thanh toán thành công!',
+            showConfirmButton: false,
+            timer: 10000  // Automatically close after 1.5 seconds
+        });
+    }
+</script>
   <!-- Template Main JS File -->
   <script src="{{asset('assets1')}}/js/main.js"></script>
 
