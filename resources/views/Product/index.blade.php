@@ -17,8 +17,9 @@
                 </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <a href="{{route('product.create')}}" class="btn btn-primary">add</a>
+                    
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <a href="{{route('product.create')}}" class="btn btn-primary">add</a>
                         <thead>
                             <tr>
                                 <th>id</th>
@@ -34,12 +35,12 @@
                         </thead>
                         <tbody>
                             @foreach ($products as $item)
-                            <tr>
+                            <tr height = "80">
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->price}}</td>
                                 <td>{{$item->quantity}}</td>
-                                <td>{{$item->origin}}</td>
+                                <td><div height="75">{{$item->origin}}</div></td>
                                 <td><img height="75" src="{{asset('images/'.$item->img)}}"></td>
                                 <td><a href="{{route('product.show',['product' => $item->id])}}" class="btn btn-info">detail</a></td>
                                 <td><a href="{{route('product.edit',['product' => $item->id])}}" class="btn btn-success">edit</a></td>
